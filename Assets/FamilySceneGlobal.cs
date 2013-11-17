@@ -32,7 +32,7 @@ public class Person
 
 
 public class FamilySceneGlobal : MonoBehaviour {
-
+	public Person test = new Person("test value"); // put all outside here
 	//List<Person> family = new List<Person>();
 	// Use this for initialization
 	void Start () 

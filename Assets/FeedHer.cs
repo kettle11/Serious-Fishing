@@ -16,8 +16,7 @@ public class FeedHer : MonoBehaviour {
 	void OnMouseDown()
 	{
 		if (alive){
-			Debug.Log(thing.wife.name);
-			//feed(wife)
+		
 		}
 	}
 
