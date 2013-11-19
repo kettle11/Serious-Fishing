@@ -10,7 +10,8 @@ public class Lure : MonoBehaviour {
 		joint = gameObject.GetComponent<ConfigurableJoint>();
 	}
 
-	bool deployed = false;
+	public bool deployed = false;
+	public bool canBeUndeployed = false;
 
 	public void deploy()
 	{
@@ -18,7 +19,7 @@ public class Lure : MonoBehaviour {
 		joint.xMotion = ConfigurableJointMotion.Free;
 		joint.yMotion = ConfigurableJointMotion.Free;
 		joint.zMotion = ConfigurableJointMotion.Free;
-		rigidbody.velocity = new Vector3(0,0,0);
+		//rigidbody.velocity = new Vector3(0,0,0);
 		rigidbody.useGravity = false;
 		inWater = true;
 		//rigidbody.isKinematic = true;
@@ -38,9 +39,18 @@ public class Lure : MonoBehaviour {
 	public float waterGravity = -.05f;
 	void FixedUpdate()
 	{
+		inWater = transform.position.y < 0;
+		canBeUndeployed = inWater;
 		if(inWater)
 		{
-			rigidbody.velocity = rigidbody.velocity + new Vector3(0,waterGravity,0);
+			rigidbody.useGravity = false;
+			rigidbody.AddForce(new Vector3(0,waterGravity,0));
+			//rigidbody.velocity = rigidbody.velocity + new Vector3(0,waterGravity,0);
+			rigidbody.drag = 5f;
+		}
+		else
+		{
+			rigidbody.useGravity = true;
 		}
 	}
 	// Update is called once per frame

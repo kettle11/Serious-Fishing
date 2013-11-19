@@ -4,9 +4,12 @@ using System.Collections;
 public class Rod : MonoBehaviour {
 
 
+	ConfigurableJoint lureAttach;
+
 	Quaternion defaultRotation;
 	// Use this for initialization
 	void Start () {
+		lureAttach = currentLure.GetComponent<ConfigurableJoint>();
 		defaultRotation = transform.localRotation;
 	}
 
@@ -15,13 +18,14 @@ public class Rod : MonoBehaviour {
 
 	public Lure currentLure;
 
-	public Camera camera;
+	public Camera lureCam;
 	public float pullbackRotation = 260f;
 
 	// Update is called once per frame
 	void Update () {
 	
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition - new Vector3(0,50));
+		Ray ray = lureCam.ScreenPointToRay(Input.mousePosition - new Vector3(0,50));
+
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit, 2))
 		{
@@ -42,9 +46,14 @@ public class Rod : MonoBehaviour {
 			cast();
 		}
 
+		if(currentLure.transform.position.y > 0 && currentLure.canBeUndeployed)
+		{
+			unCast ();
+		}
+
 		reelingIn = Input.GetMouseButton(1);
 
-		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray mouseRay = lureCam.ScreenPointToRay(Input.mousePosition);
 
 		/*
 		Vector3 normal = transform.position - currentLure.transform.position;
@@ -62,6 +71,14 @@ public class Rod : MonoBehaviour {
 	
 	void cast() {
 		currentLure.deploy();
+		lureCam.enabled = true;
+		Camera.main.rect = new Rect(0,0,.5f,1f);
+	}
+
+	void unCast() {
+		currentLure.unDeploy();
+		Camera.main.rect = new Rect(0,0,1f,1f);
+		lureCam.enabled = false;
 	}
 
 	bool reelingIn = false;
@@ -70,9 +87,14 @@ public class Rod : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		if(currentLure.deployed)
+		{
+
+		}
+
 		if(reelingIn && currentLure.rigidbody.velocity.y < maxReelRate)
 		{
-			currentLure.rigidbody.velocity += new Vector3(0,reelRate,0);
+			currentLure.rigidbody.AddForce(new Vector3(0,reelRate,0));
 		}
 	}
 
