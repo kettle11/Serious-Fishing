@@ -70,6 +70,12 @@ public class Lure : MonoBehaviour {
 			rigidbody.isKinematic = false;
 		}
 	}
+
+	void OnTriggerEnter(Collider collidor) {
+		
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 
