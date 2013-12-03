@@ -82,7 +82,7 @@ public class Rod : MonoBehaviour {
 		Ray mouseRay = lureCam.ScreenPointToRay(Input.mousePosition);
 
 		lureAngle = Mathf.Deg2Rad * transform.rotation.eulerAngles.y;
-		Debug.Log(lureAngle);
+		//Debug.Log(lureAngle);
 
 		if(currentLure.deployed && currentLure.transform.position.y < 0)
 		{

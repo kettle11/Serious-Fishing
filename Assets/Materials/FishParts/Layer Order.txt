@@ -1,0 +1,9 @@
+Layer Order for fish.
+Render the ones on top over the one beneath it.
+
+Tint
+Face
+Bottom
+Tail
+Top
+Body
