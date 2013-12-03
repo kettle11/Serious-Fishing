@@ -33,7 +33,7 @@ public class Fish : MonoBehaviour {
 		timer += Time.deltaTime / rate;
 		float value = movementPattern.Evaluate(timer);
 
-		if(target != null && Vector3.Angle((target.position - transform.position), transform.forward) < fov)
+		if(target != null && target.position.y < 0 && Vector3.Angle((target.position - transform.position), transform.forward) < fov)
 		{
 			direction = (target.position - transform.position).normalized;
 		}
