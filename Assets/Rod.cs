@@ -69,6 +69,7 @@ public class Rod : MonoBehaviour {
 			if(currentLure.transform.position.y > 0 && reelingIn && currentLure.deployed)
 			{
 				unCast ();
+				currentLure.BroughtOutOfWater();
 			}
 
 			//If the lure has just entered the water
