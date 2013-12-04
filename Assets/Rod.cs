@@ -6,7 +6,7 @@ public class Rod : MonoBehaviour {
 
 	ConfigurableJoint lureAttach;
 
-	float defaultRotation = 344f;
+	float defaultRotation = 80f;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +28,7 @@ public class Rod : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.localRotation = Quaternion.AngleAxis(defaultRotation + currentPull, Vector3.right) * Quaternion.AngleAxis(90f, Vector3.up);
+		transform.localRotation = Quaternion.AngleAxis(defaultRotation + currentPull, Vector3.right);// * Quaternion.AngleAxis(90f, Vector3.up);
 		Ray ray = lureCam.ScreenPointToRay(Input.mousePosition - new Vector3(0,50));
 
 		RaycastHit hit;
