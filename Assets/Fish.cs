@@ -20,7 +20,8 @@ public class Fish : MonoBehaviour {
 	public float rate = 5f;
 	public float fov = 60f;
 
-	float timer = 0f;
+	public float timer = Random.value;
+
 	Vector3 velocity;
 
 	Vector3 direction;

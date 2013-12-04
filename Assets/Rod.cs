@@ -11,7 +11,7 @@ public class Rod : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		lureAttach = currentLure.GetComponent<ConfigurableJoint>();
-		Vector3 axis;
+
 	}
 
 
@@ -29,6 +29,8 @@ public class Rod : MonoBehaviour {
 	float currentPull = 0f;
 
 	float lureDistanceFromBoat;
+
+	public Transform firstPersonController;
 
 	// Update is called once per frame
 	void Update () {
@@ -101,13 +103,12 @@ public class Rod : MonoBehaviour {
 				reelingSound.Pause();
 			}
 
-			Ray mouseRay = lureCam.ScreenPointToRay(Input.mousePosition);
-
-			lureAngle = Mathf.Deg2Rad * transform.rotation.eulerAngles.y;
+			lureAngle = Mathf.Deg2Rad * firstPersonController.localRotation.eulerAngles.y;
 			//Debug.Log(lureAngle);
 
 			if(currentLure.deployed && currentLure.transform.position.y < 0)
 			{
+
 				currentLure.transform.position = new Vector3(Mathf.Cos(-lureAngle)*-lureDistanceFromBoat, currentLure.transform.position.y, Mathf.Sin(-lureAngle)*-lureDistanceFromBoat);
 			}
 
@@ -133,11 +134,14 @@ public class Rod : MonoBehaviour {
 
 	private float lureAngle; 
 	public float lureCamDistance = 15;
+	bool locked;
 
 	void cast() {
 		lureAngle = transform.rotation.y;
 		currentLure.deploy();
 		currentLure.rigidbody.AddForce((transform.parent.forward + transform.parent.up * .6f).normalized * Mathf.Abs(currentPull) * 3f);
+		locked = true;
+
 
 	}
 
@@ -145,6 +149,8 @@ public class Rod : MonoBehaviour {
 		currentLure.unDeploy();
 		Camera.main.rect = new Rect(0,0,1f,1f);
 		lureCam.enabled = false;
+		locked = false;
+
 	}
 
 	bool reelingIn = false;
