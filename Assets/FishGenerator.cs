@@ -23,6 +23,10 @@ public class FishGenerator : MonoBehaviour {
 
 	Mesh defaultMesh;
 
+	public int fishToSpawn = 10;
+	public float spawnRadius = 10f;
+	public float spawnDepth = 30f;
+
 	// Use this for initialization
 	void Start () {
 		defaultMesh = new Mesh();
@@ -72,9 +76,12 @@ public class FishGenerator : MonoBehaviour {
 		defaultMesh.triangles = tris;
 		defaultMesh.RecalculateNormals();
 
-		GenerateFish();
-		GenerateFish();
-		GenerateFish();
+		for(int i = 0 ; i < fishToSpawn; i++)
+		{
+			float randomAngle = Random.value * Mathf.PI * 2f;
+
+			GenerateFish(new Vector3(Mathf.Cos(randomAngle) * spawnRadius, Random.value * -spawnDepth, Mathf.Sin(randomAngle) * spawnRadius ));
+		}
 	}
 	
 	// Update is called once per frame
@@ -82,8 +89,8 @@ public class FishGenerator : MonoBehaviour {
 	
 	}
 
-	void GenerateFish() {
-		Transform newFish = (Transform)Instantiate(prefabFish, Vector3.zero, Quaternion.identity);
+	void GenerateFish(Vector3 position) {
+		Transform newFish = (Transform)Instantiate(prefabFish, position, Quaternion.AngleAxis(Random.value * Mathf.PI * 2f, Vector3.up));
 		MeshFilter meshF = newFish.GetComponent<MeshFilter>();
 		meshF.mesh = defaultMesh;
 

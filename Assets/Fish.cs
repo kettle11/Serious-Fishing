@@ -79,7 +79,7 @@ public class Fish : MonoBehaviour {
 			transform.position += velocity * Time.deltaTime;
 
 
-			if(transform.position.magnitude > radius)
+			if(new Vector3(transform.position.x, 0, transform.position.z).magnitude > radius)
 			{
 				direction = (-new Vector3(transform.position.x, 0, transform.position.z)).normalized;
 			}
