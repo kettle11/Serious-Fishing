@@ -10,7 +10,7 @@ public class FishCollect : MonoBehaviour {
 		fishCollected += change;
 	}
 
-	private static int getFishCollected()
+	public static int getFishCollected()
 	{
 		return fishCollected;
 	}
