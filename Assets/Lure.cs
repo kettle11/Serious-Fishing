@@ -150,6 +150,10 @@ public class Lure : MonoBehaviour {
 
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 90bbea1cbde939583ba138e546378b75a7586a98
 	public void BroughtOutOfWater() {
 		if (fishAttached != null) {
 			barkSound.Play();
