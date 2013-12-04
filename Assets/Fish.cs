@@ -6,6 +6,7 @@ public class Fish : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		direction = new Vector3(Random.value * 1f, 0f, Random.value * 1f).normalized;
+		timer = Random.value;
 	}
 
 	//The radius fish can roam within.
@@ -20,7 +21,7 @@ public class Fish : MonoBehaviour {
 	public float rate = 5f;
 	public float fov = 60f;
 
-	public float timer = Random.value;
+	public float timer;
 
 	Vector3 velocity;
 
