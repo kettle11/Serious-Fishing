@@ -3,7 +3,7 @@ using System.Collections;
 //using System;
 
 public class FishGenerator : MonoBehaviour {
-
+	/*
 	public int body;
 	public int bottom;
 	public int face;
@@ -19,6 +19,8 @@ public class FishGenerator : MonoBehaviour {
 	private string topTexName;
 	private string lanternTexName;
 
+	Fish prefabFish;
+
 	// Use this for initialization
 	void Start () {
 		GenerateFish();
@@ -32,8 +34,12 @@ public class FishGenerator : MonoBehaviour {
 	}
 
 	void GenerateFish() {
-		//Create a fish
-		GameObject fish = new GameObject("fish");
+		GameObject newFish = Instantiate(prefabFish);
+		newFish.renderer = CreateRenderer();
+	}
+
+	MeshRenderer CreateRenderer() {
+
 
 		//Randomize attributes
 		System.Random randgen = new System.Random();
@@ -132,8 +138,8 @@ public class FishGenerator : MonoBehaviour {
 
 		
 
-		fish.GetComponent<Transform>().position = new Vector3(0,2,-5);
+
 		//fish.GetComponent<MeshFilter>().mesh
 
-	}
+	}*/
 }
