@@ -27,6 +27,10 @@ public class FishGenerator : MonoBehaviour {
 	public float spawnRadius = 10f;
 	public float spawnDepth = 30f;
 
+	public Vector3 smallFish = new Vector3(.25f,.25f,.5f);
+	public Vector3 mediumFish = new Vector3(.5f,.5f,1f);
+	public Vector3 largeFish = new Vector3(1f, 1f, 2f);
+
 	// Use this for initialization
 	void Start () {
 		defaultMesh = new Mesh();
@@ -79,8 +83,9 @@ public class FishGenerator : MonoBehaviour {
 		for(int i = 0 ; i < fishToSpawn; i++)
 		{
 			float randomAngle = Random.value * Mathf.PI * 2f;
+			int randomSize = (int)(Random.value * 3f);
 
-			GenerateFish(new Vector3(Mathf.Cos(randomAngle) * spawnRadius, Random.value * -spawnDepth, Mathf.Sin(randomAngle) * spawnRadius ));
+			GenerateFish(new Vector3(Mathf.Cos(randomAngle) * spawnRadius, Random.value * -spawnDepth, Mathf.Sin(randomAngle) * spawnRadius ), randomSize);
 		}
 	}
 	
@@ -89,12 +94,26 @@ public class FishGenerator : MonoBehaviour {
 	
 	}
 
-	void GenerateFish(Vector3 position) {
+	void GenerateFish(Vector3 position, int size) {
 		Transform newFish = (Transform)Instantiate(prefabFish, position, Quaternion.AngleAxis(Random.value * Mathf.PI * 2f, Vector3.up));
+		if(size == 0)
+		{
+			newFish.transform.localScale = smallFish;
+		}
+		if(size == 1)
+		{
+			newFish.transform.localScale = mediumFish;
+		}
+		if(size == 2)
+		{
+			newFish.transform.localScale = largeFish;
+		}
+
 		MeshFilter meshF = newFish.GetComponent<MeshFilter>();
 		meshF.mesh = defaultMesh;
 
 		CreateRenderer(newFish.GetComponent<MeshRenderer>());
+		((SetRenderQueue)newFish.GetComponent("SetRenderQueue")).refresh();
 	}
 
 	void CreateRenderer(MeshRenderer fishRenderer) {
