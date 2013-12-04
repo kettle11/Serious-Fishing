@@ -201,20 +201,23 @@ public class FishGenerator : MonoBehaviour {
 			
 		}
 
-		//Tint each fish aprt, pixel by pixel
+			//Tint each fish aprt, pixel by pixel
 		for(int i = 0; i < numparts; i++) {
-			for(int x = 0; x < fishRenderer.materials[i].mainTexture.width; x++) {
-				for(int y = 0; y < fishRenderer.materials[i].mainTexture.height; y++) {
-					Color c = (fishRenderer.materials[i].mainTexture as Texture2D).GetPixel(x,y);
-					c.r *= color.r;
-					c.g *= color.g;
-					c.b *= color.b;
+			Color firstPixel = (fishRenderer.materials[i].mainTexture as Texture2D).GetPixel(0,0);
+			if(firstPixel.r == firstPixel.g) {
+				for(int x = 0; x < fishRenderer.materials[i].mainTexture.width; x++) {
+					for(int y = 0; y < fishRenderer.materials[i].mainTexture.height; y++) {
+						Color c = (fishRenderer.materials[i].mainTexture as Texture2D).GetPixel(x,y);
+						c.r *= color.r;
+						c.g *= color.g;
+						c.b *= color.b;
 
-					(fishRenderer.materials[i].mainTexture as Texture2D).SetPixel(x,y,c);
+						(fishRenderer.materials[i].mainTexture as Texture2D).SetPixel(x,y,c);
+					}
 				}
+				//Apply the tint to the current part
+				(fishRenderer.materials[i].mainTexture as Texture2D).Apply();
 			}
-			//Apply the tint to the current part
-			(fishRenderer.materials[i].mainTexture as Texture2D).Apply();
 		}
 
 		
