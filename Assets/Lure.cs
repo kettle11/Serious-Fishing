@@ -44,11 +44,18 @@ public class Lure : MonoBehaviour {
 	public float maxSpeed = 9f;
 
 	public Vector3 velocity;
-	
+
+	public WaveScript waves;
 	void FixedUpdate()
 	{
+		bool newInWater = transform.position.y < waves.getHeightAtPoint(transform.position);
 
-		inWater = transform.position.y < 0;
+		if(newInWater != inWater)
+		{
+			velocity = rigidbody.velocity;
+		}
+
+		inWater = newInWater;
 		canBeUndeployed = inWater;
 
 		if(inWater && deployed)
