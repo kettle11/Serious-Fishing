@@ -47,7 +47,9 @@ public class FamilySceneGlobal : MonoBehaviour {
 
 	// fish should be how many fish caught that day
 	public static int fish = 0;
-	public static void set_fish(int num){fish+=num;}
+	public static int ltemp = 0;
+	public static int ntemp = 0;
+	public static int ttemp = 0;
 
 	public static int happy = 6;
 	//public static Person hero = new Person("The Hero");
@@ -61,7 +63,7 @@ public class FamilySceneGlobal : MonoBehaviour {
 		//family.Add(hero);
 		Debug.Log(TimeKeepTracker.day);
 		if(TimeKeepTracker.day==1){ family.Add(wife); family.Add(baby);family.Add(child); family.Add(dog);}
-		fish  = FishCollect.getFishCollected();
+		ntemp=ttemp;ltemp=FishCollect.getFishCollected();ttemp=ltemp;ltemp-=ntemp;fish=ltemp;
 	}
 	
 	// Update is called once per frame
