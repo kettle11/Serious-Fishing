@@ -1,10 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FeedWife.js">
     <Files>
       <File FileName="Assets\rightLabelStuff.js" Line="17" Column="40" />
       <File FileName="Assets\FeedWife.js" Line="17" Column="37" />
       <File FileName="Assets\FamilySceneGlobal.cs" Line="46" Column="5" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WaveScript.cs">
+    <Files>
+      <File FileName="Assets\Rod.cs" Line="1" Column="1" />
+      <File FileName="Assets\Lure.cs" Line="1" Column="1" />
+      <File FileName="Assets\LureCam.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" Line="1" Column="1" />
+      <File FileName="Assets\Fish.cs" Line="36" Column="39" />
+      <File FileName="Assets\WaveScript.cs" Line="121" Column="25" />
+      <File FileName="Assets\BoatScript.cs" Line="15" Column="61" />
+>>>>>>> 053efb93a3dac507b92e42f69e1e1ef99927ecca
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
