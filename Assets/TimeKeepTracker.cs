@@ -34,7 +34,7 @@ public class TimeKeepTracker : MonoBehaviour {
 		day ++;
 		
 		//FamilySceneGlobal.set_fish(temp_fishCaught);
-		if(day>7)
+		if(day>=7)
 			Application.LoadLevel("EndSceen");
 		else
 			Application.LoadLevel("FamilyScene");

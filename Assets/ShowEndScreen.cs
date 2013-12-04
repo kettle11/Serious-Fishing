@@ -13,10 +13,17 @@ public class ShowEndScreen : MonoBehaviour {
 	float offset = 0; 
 
 	// Update is called once per frame
+
+	bool go = true;
+
 	void Update () {
-		if((offset + 100)  > -withDog.height - 1430)
+		if((offset + 100)  > -withDog.height - Screen.height && go)
 		{
 			offset -= Time.deltaTime * 100;
+		}
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			go = false;
 		}
 	}
 

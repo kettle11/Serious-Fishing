@@ -19,7 +19,7 @@ public class CameraRotate : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		Rect screenRect = new Rect(Screen.width / 2 - 400, -40, 800, 600);
+		Rect screenRect = new Rect(Screen.width / 2 - 400, -20, 800, 600);
 		//GUI.Box (screenRect,startMenuImage);
 		GUI.DrawTexture(screenRect,startMenuImage,ScaleMode.ScaleToFit);
 	}
