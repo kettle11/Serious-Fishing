@@ -150,9 +150,6 @@ public class Lure : MonoBehaviour {
 
 	}
 
-	void OnCollisionEnter(Collision collision) {
-
-	}
 
 	public void BroughtOutOfWater() {
 		if (fishAttached != null) {
