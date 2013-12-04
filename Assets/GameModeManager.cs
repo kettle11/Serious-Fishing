@@ -20,6 +20,7 @@ public class GameModeManager : MonoBehaviour {
 	public MouseLook controller2;
 
 	public AudioSource pauseSound;
+	public AudioSource unpauseSound;
 
 	// Use this for initialization
 	void Start () {
@@ -50,6 +51,7 @@ public class GameModeManager : MonoBehaviour {
 				Time.timeScale = 1;
 				controller1.enabled = true;
 				controller2.enabled = true;
+				unpauseSound.Play();
 			}
 		}
 	}
