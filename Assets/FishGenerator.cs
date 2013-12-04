@@ -32,8 +32,10 @@ public class FishGenerator : MonoBehaviour {
 	}
 
 	void GenerateFish() {
+		//Create a fish
 		GameObject fish = new GameObject("fish");
 
+		//Randomize attributes
 		System.Random randgen = new System.Random();
 		body = randgen.Next(1,7);
 		bottom = randgen.Next(1,7);
@@ -45,12 +47,14 @@ public class FishGenerator : MonoBehaviour {
 		color.g = (float) randgen.NextDouble();
 		color.b = (float) randgen.NextDouble();
 
+		//Calculate the number of parts on each fish
 		int numparts;
 		numparts = 5;
 		if (lantern) {
 			numparts = 6;
 		}
-		
+
+		//Generate the names for the random fish parts
 		bodyTexName = "Body0" + body.ToString ();
 		bottomTexName = "Bottom0" + bottom.ToString ();
 		faceTexName = "Face0" + face.ToString ();
@@ -58,9 +62,11 @@ public class FishGenerator : MonoBehaviour {
 		topTexName = "Top0" + top.ToString();
 		lanternTexName = "Lantern";
 
+		//Add mesh components to the fish
 		fish.AddComponent<MeshFilter>();
 		fish.AddComponent<MeshRenderer>();
 
+		//Create an array of materials for the various fish parts
 		Material[] materialsArray;
 
 		if (lantern) {
@@ -79,29 +85,24 @@ public class FishGenerator : MonoBehaviour {
 
 		}
 
+		//Store the materials array into the fish
 		fish.renderer.materials = materialsArray;
-
 		MeshRenderer fishRenderer = fish.GetComponent<MeshRenderer>();
 		fishRenderer.materials = materialsArray;
 
-		Debug.Log(lanternTexName);
-		if (Resources.Load(lanternTexName) == null) {
-			Debug.Log("Not loading");
-		}
-
+		//Add the textures to the fish materials list
 		fishRenderer.materials[0].mainTexture = (Texture2D) Resources.Load(bodyTexName);
 		fishRenderer.materials[1].mainTexture = (Texture2D) Resources.Load(bottomTexName);
 		fishRenderer.materials[2].mainTexture = (Texture2D) Resources.Load(faceTexName);
 		fishRenderer.materials[3].mainTexture = (Texture2D) Resources.Load(tailTexName);
 		fishRenderer.materials[4].mainTexture = (Texture2D) Resources.Load(topTexName);
-
-
 		
 		if(lantern) {
 			fishRenderer.materials[5].mainTexture = (Texture2D) Resources.Load(lanternTexName);
 			
 		}
 
+		//Account for transparency for each part
 		fishRenderer.materials[0].shader = Shader.Find("Unlit/Transparent");
 		fishRenderer.materials[1].shader = Shader.Find("Unlit/Transparent");
 		fishRenderer.materials[2].shader = Shader.Find("Unlit/Transparent");
@@ -113,6 +114,7 @@ public class FishGenerator : MonoBehaviour {
 			
 		}
 
+		//Tint each fish aprt, pixel by pixel
 		for(int i = 0; i < numparts; i++) {
 			for(int x = 0; x < fishRenderer.materials[i].mainTexture.width; x++) {
 				for(int y = 0; y < fishRenderer.materials[i].mainTexture.height; y++) {
@@ -124,20 +126,12 @@ public class FishGenerator : MonoBehaviour {
 					(fishRenderer.materials[i].mainTexture as Texture2D).SetPixel(x,y,c);
 				}
 			}
-		(fishRenderer.materials[i].mainTexture as Texture2D).Apply();
+			//Apply the tint to the current part
+			(fishRenderer.materials[i].mainTexture as Texture2D).Apply();
 		}
 
-
-		Color cl = (fishRenderer.materials[0].mainTexture as Texture2D).GetPixel(50,50);
-		cl.r *= color.r;
-		cl.g *= color.g;
-		cl.b *= color.b;
-		Debug.Log(cl.r.ToString ());
-		Debug.Log(cl.g.ToString ());
-		Debug.Log(cl.b.ToString ());
 		
-		//Vector3 pos = new Vector3(0,2,-5);
-		Debug.Log("test");
+
 		fish.GetComponent<Transform>().position = new Vector3(0,2,-5);
 		//fish.GetComponent<MeshFilter>().mesh
 

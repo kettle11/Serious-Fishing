@@ -32,7 +32,7 @@ public class GameModeManager : MonoBehaviour {
 		*/
 
 		hunger[0] = 10;
-		Application.LoadLevel("RyanTestScene");
+		//Application.LoadLevel("RyanTestScene");
 
 
 
