@@ -4,6 +4,8 @@ using System.Collections;
 public class Lure : MonoBehaviour {
 
 	ConfigurableJoint joint;
+	
+	public AudioSource splashSound;
 
 	// Use this for initialization
 	void Start () {
@@ -50,9 +52,10 @@ public class Lure : MonoBehaviour {
 	{
 		bool newInWater = transform.position.y < waves.getHeightAtPoint(transform.position);
 
-		if(newInWater != inWater)
+		if(newInWater != inWater && newInWater == true)
 		{
 			velocity = rigidbody.velocity;
+			splashSound.Play();
 		}
 
 		inWater = newInWater;

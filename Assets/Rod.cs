@@ -21,6 +21,7 @@ public class Rod : MonoBehaviour {
 
 	public AudioSource reelingSound;
 	public AudioSource castSound;
+
 	private bool reeling = false;
 
 	public Camera lureCam;
@@ -59,6 +60,7 @@ public class Rod : MonoBehaviour {
 			if(currentPull != 0)
 			{
 				cast ();
+				castSound.Play();
 				currentPull = 0f;
 			}
 		}
