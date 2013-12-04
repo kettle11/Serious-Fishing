@@ -137,9 +137,12 @@ public class Lure : MonoBehaviour {
 	void OnCollisionEnter(Collision collision) {
 		if(deployed && collision.gameObject.GetComponent<BoatScript>() && fishAttached != null)
 		{ 
+			FishCollect.collectFish(fishAttached.size + 1);
 			//Catch fish!
 			unDeploy();
 			DetachFish();
+
+
 		}
 
 
