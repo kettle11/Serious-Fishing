@@ -73,11 +73,20 @@ public class Lure : MonoBehaviour {
 
 	Fish fishAttached;
 
+	void Update()
+	{
+		if(fishAttached != null)
+		{
+			fishAttached.transform.position = this.transform.position;
+		}
+	}
+
 	public void AttachFish(Fish fish)
 	{
-		ConfigurableJoint joint = fish.GetComponent<ConfigurableJoint>();
-		joint.connectedBody = this.rigidbody;
-		fish.rigidbody.isKinematic = false;
+		//ConfigurableJoint joint = fish.GetComponent<ConfigurableJoint>();
+		//joint.connectedBody = this.rigidbody;
+
+		fish.rigidbody.isKinematic = true;
 
 	}
 
@@ -86,9 +95,5 @@ public class Lure : MonoBehaviour {
 
 
 	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
+	
 }

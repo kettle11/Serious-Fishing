@@ -30,6 +30,15 @@ public class Fish : MonoBehaviour {
 	// Update is called once per frame
 	//Much of this logic is assuming the boat position never moves!
 	void Update () {
+		if(transform.position.y < 0)
+		{
+			rigidbody.isKinematic = false;
+		}
+		else
+		{
+			rigidbody.isKinematic = true;
+		}
+
 		if(rigidbody.isKinematic)
 		{
 			timer += Time.deltaTime / rate;
