@@ -155,6 +155,7 @@ public class Rod : MonoBehaviour {
 		Camera.main.rect = new Rect(0,0,1f,1f);
 		lureCam.enabled = false;
 		locked = false;
+		reelingSound.Pause();
 
 	}
 
