@@ -22,6 +22,8 @@ public class GameModeManager : MonoBehaviour {
 	public AudioSource pauseSound;
 	public AudioSource unpauseSound;
 
+	public Texture2D pauseBackground;
+
 	// Use this for initialization
 	void Start () {
 		//DontDestroyOnLoad(transform.gameObject);
@@ -59,7 +61,8 @@ public class GameModeManager : MonoBehaviour {
 	void OnGUI () {
 		if(paused) {
 			Rect newRect = new Rect(-10,-10,Screen.width + 20,Screen.height + 20);
-			GUI.Button(newRect,"Paused");
+			//GUI.Button(newRect,"Paused");
+			GUI.Button(newRect,pauseBackground);
 		}
 	}
 
