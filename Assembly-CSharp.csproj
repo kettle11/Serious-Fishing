@@ -64,6 +64,7 @@
      <Compile Include="Assets\RightLabel2.cs" />
      <Compile Include="Assets\Rod.cs" />
      <Compile Include="Assets\SetRenderQueue.cs" />
+     <Compile Include="Assets\TimeKeepTracker.cs" />
      <Compile Include="Assets\WaveScript.cs" />
      <Compile Include="Assets\frameBaby.cs" />
      <Compile Include="Assets\frameChild.cs" />
