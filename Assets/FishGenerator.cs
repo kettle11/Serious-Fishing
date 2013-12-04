@@ -3,7 +3,7 @@ using System.Collections;
 //using System;
 
 public class FishGenerator : MonoBehaviour {
-	/*
+
 	public int body;
 	public int bottom;
 	public int face;
@@ -19,7 +19,7 @@ public class FishGenerator : MonoBehaviour {
 	private string topTexName;
 	private string lanternTexName;
 
-	Fish prefabFish;
+	public Fish prefabFish;
 
 	// Use this for initialization
 	void Start () {
@@ -34,11 +34,11 @@ public class FishGenerator : MonoBehaviour {
 	}
 
 	void GenerateFish() {
-		GameObject newFish = Instantiate(prefabFish);
-		newFish.renderer = CreateRenderer();
+		Fish newFish = (Fish)Instantiate(prefabFish);
+		CreateRenderer(newFish.GetComponent<MeshRenderer>());
 	}
 
-	MeshRenderer CreateRenderer() {
+	void CreateRenderer(MeshRenderer fishRenderer) {
 
 
 		//Randomize attributes
@@ -68,10 +68,6 @@ public class FishGenerator : MonoBehaviour {
 		topTexName = "Top0" + top.ToString();
 		lanternTexName = "Lantern";
 
-		//Add mesh components to the fish
-		fish.AddComponent<MeshFilter>();
-		fish.AddComponent<MeshRenderer>();
-
 		//Create an array of materials for the various fish parts
 		Material[] materialsArray;
 
@@ -79,21 +75,21 @@ public class FishGenerator : MonoBehaviour {
 			materialsArray = new Material[6];
 
 			for(int i = 0; i < 6; i++) {
-				materialsArray[i] = new Material(fish.renderer.material);
+				materialsArray[i] = new Material(renderer.material);
 			}
 		}
 		else {
 			materialsArray = new Material[5];
 			
 			for(int i = 0; i < 5; i++) {
-				materialsArray[i] = new Material(fish.renderer.material);
+				materialsArray[i] = new Material(renderer.material);
 			}
 
 		}
 
 		//Store the materials array into the fish
-		fish.renderer.materials = materialsArray;
-		MeshRenderer fishRenderer = fish.GetComponent<MeshRenderer>();
+		//fish.renderer.materials = materialsArray;
+		//MeshRenderer fishRenderer = fish.GetComponent<MeshRenderer>();
 		fishRenderer.materials = materialsArray;
 
 		//Add the textures to the fish materials list
@@ -141,5 +137,5 @@ public class FishGenerator : MonoBehaviour {
 
 		//fish.GetComponent<MeshFilter>().mesh
 
-	}*/
+	}
 }
