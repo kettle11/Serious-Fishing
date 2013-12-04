@@ -88,6 +88,7 @@ public class Lure : MonoBehaviour {
 		if(fishAttached != null)
 		{
 			fishAttached.transform.position = this.transform.position;
+			fishAttached.transform.forward = this.transform.up;
 		}
 	}
 

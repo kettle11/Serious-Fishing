@@ -32,11 +32,11 @@ public class Fish : MonoBehaviour {
 	void Update () {
 		if(transform.position.y < 0)
 		{
-			rigidbody.isKinematic = false;
+			rigidbody.isKinematic = true;
 		}
 		else
 		{
-			rigidbody.isKinematic = true;
+			rigidbody.isKinematic = false;
 		}
 
 		if(rigidbody.isKinematic)
