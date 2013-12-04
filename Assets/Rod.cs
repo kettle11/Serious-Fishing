@@ -32,6 +32,7 @@ public class Rod : MonoBehaviour {
 
 	public Transform firstPersonController;
 
+	public float maxPullback = -100f;
 	// Update is called once per frame
 	void Update () {
 		if(!GameModeManager.paused) {
@@ -56,7 +57,10 @@ public class Rod : MonoBehaviour {
 
 			if(Input.GetMouseButton(0))
 			{
-				currentPull -= 1f;
+				if(currentPull > maxPullback)
+				{
+					currentPull -= 1f;
+				}
 			}
 			else
 			{
