@@ -139,6 +139,7 @@ public class Lure : MonoBehaviour {
 		{ 
 			FishCollect.collectFish(fishAttached.size + 1);
 			//Catch fish!
+			FishGenerator.fishToSpawn -= 1;
 			unDeploy();
 			DetachFish();
 

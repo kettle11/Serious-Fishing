@@ -23,7 +23,7 @@ public class FishGenerator : MonoBehaviour {
 
 	Mesh defaultMesh;
 
-	public int fishToSpawn = 10;
+	public static int fishToSpawn = 30;
 	public float spawnRadius = 10f;
 	public float spawnDepth = 30f;
 
