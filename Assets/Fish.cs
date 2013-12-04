@@ -87,6 +87,10 @@ public class Fish : MonoBehaviour {
 			{
 				direction = (-new Vector3(transform.position.x, 0, transform.position.z)).normalized;
 			}
+			if(transform.position.y > 0)
+			{
+				direction = new Vector3(direction.x, -direction.y, direction.z).normalized;
+			}
 		}
 	}
 

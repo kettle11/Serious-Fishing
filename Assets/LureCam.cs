@@ -78,7 +78,10 @@ public class LureCam : MonoBehaviour {
 
 	void OnGUI()
 	{
-		GUI.DrawTexture(new Rect(hookPoint.x - 10, hookPoint.y - 15, 20, 30),texture); 
+		if(underWater && camera.enabled)
+		{
+			GUI.DrawTexture(new Rect(hookPoint.x - 10, hookPoint.y - 15, 20, 30),texture);
+		}
 	}
 
 	// Update is called once per frame
@@ -86,9 +89,6 @@ public class LureCam : MonoBehaviour {
 		if(target.transform.position.y < startY)
 		{
 			transform.position = new Vector3(transform.position.x, target.transform.position.y + target.rigidbody.velocity.y * .2f, transform.position.z);
-
-
-
 
 		}
 

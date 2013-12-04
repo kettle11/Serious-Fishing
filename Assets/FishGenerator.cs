@@ -31,6 +31,8 @@ public class FishGenerator : MonoBehaviour {
 	public Vector3 mediumFish = new Vector3(.5f,.5f,1f);
 	public Vector3 largeFish = new Vector3(1f, 1f, 2f);
 
+	public Lure target;
+
 	// Use this for initialization
 	void Start () {
 		defaultMesh = new Mesh();
@@ -110,7 +112,9 @@ public class FishGenerator : MonoBehaviour {
 			newFish.transform.localScale = largeFish;
 		}
 
-		((Fish)(newFish.GetComponent("Fish"))).size = size;
+		Fish fishC = (Fish)(newFish.GetComponent("Fish"));
+		fishC.size = size;
+		fishC.target = target.transform;
 
 		MeshFilter meshF = newFish.GetComponent<MeshFilter>();
 		meshF.mesh = defaultMesh;
