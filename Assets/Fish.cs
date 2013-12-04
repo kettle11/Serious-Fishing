@@ -27,12 +27,17 @@ public class Fish : MonoBehaviour {
 
 	public Transform target;
 
+	public int outOfWaterLayer = 3021;
+	public int inWaterLayer = 3019;
+
 	// Update is called once per frame
 	//Much of this logic is assuming the boat position never moves!
 	void Update () {
+
 		if(transform.position.y < 0)
 		{
 			rigidbody.isKinematic = true;
+
 		}
 		else
 		{

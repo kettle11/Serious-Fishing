@@ -42,6 +42,10 @@ public class Lure : MonoBehaviour {
 
 		//Reset kinemetic velocity
 		velocity = Vector3.zero;
+		if(fishAttached)
+		{
+			fishOutOfWater = true;
+		}
 	}
 
 	bool inWater = false;
@@ -59,6 +63,13 @@ public class Lure : MonoBehaviour {
 		{
 			velocity = rigidbody.velocity;
 			splashSound.Play();
+		}
+
+		//Cast fish back
+		if(fishOutOfWater && newInWater && newInWater != inWater && fishAttached != null)
+		{
+			unDeploy();
+			//DetachFish();
 		}
 
 		inWater = newInWater;
@@ -82,9 +93,13 @@ public class Lure : MonoBehaviour {
 			rigidbody.useGravity = true;
 			rigidbody.isKinematic = false;
 		}
+
+
+
 	}
 
 	Fish fishAttached;
+	bool fishOutOfWater = false;
 
 	void Update()
 	{
@@ -93,6 +108,8 @@ public class Lure : MonoBehaviour {
 			fishAttached.transform.position = this.transform.position;
 			fishAttached.transform.forward = this.transform.up;
 		}
+
+
 	}
 
 	public void AttachFish(Fish fish)
@@ -102,9 +119,31 @@ public class Lure : MonoBehaviour {
 
 		fish.rigidbody.isKinematic = true;
 		fishAttached = fish;
+		fishOutOfWater = false;
 
 	}
 
+	public void DetachFish()
+	{
+		if(fishAttached != null)
+		{
+			fishAttached.rigidbody.isKinematic = true;
+			fishAttached.rigidbody.position = fishAttached.transform.position;
+			fishAttached.rigidbody.velocity = Vector3.zero;
+			fishAttached = null;
+		}
+	}
+
+	void OnCollisionEnter(Collision collision) {
+		if(deployed && collision.gameObject.GetComponent<BoatScript>() && fishAttached != null)
+		{ 
+			//Catch fish!
+			unDeploy();
+			DetachFish();
+		}
+
+
+	}
 	void OnTriggerEnter(Collider collidor) {
 
 
