@@ -30,48 +30,54 @@ public class Fish : MonoBehaviour {
 	// Update is called once per frame
 	//Much of this logic is assuming the boat position never moves!
 	void Update () {
-		timer += Time.deltaTime / rate;
-		float value = movementPattern.Evaluate(timer);
-
-		if(target != null && target.position.y < 0 && Vector3.Angle((target.position - transform.position), transform.forward) < fov)
+		if(rigidbody.isKinematic)
 		{
-			direction = (target.position - transform.position).normalized;
-		}
+			timer += Time.deltaTime / rate;
+			float value = movementPattern.Evaluate(timer);
 
-		velocity += value * acceleration * direction;
+			if(target != null && target.position.y < 0 && Vector3.Angle((target.position - transform.position), transform.forward) < fov)
+			{
+				direction = (target.position - transform.position).normalized;
+			}
 
-		if(velocity.magnitude > maxSpeed)
-		{
-			velocity = velocity.normalized * maxSpeed;
-		}
+			velocity += value * acceleration * direction;
 
-		Vector3 oldDir = velocity.normalized;
-		velocity -= velocity.normalized * friction * Time.deltaTime;
+			if(velocity.magnitude > maxSpeed)
+			{
+				velocity = velocity.normalized * maxSpeed;
+			}
 
-		//To prevent friction from accelerating backwards causing a flickering effect
-		if(velocity.normalized != oldDir.normalized)
-		{
-			velocity = Vector3.zero;
-		}
+			Vector3 oldDir = velocity.normalized;
+			velocity -= velocity.normalized * friction * Time.deltaTime;
 
-		//Also to prevent a flickering effect
-		if(velocity.magnitude > 0)
-		{
-			transform.forward = velocity.normalized;
-		}
+			//To prevent friction from accelerating backwards causing a flickering effect
+			if(velocity.normalized != oldDir.normalized)
+			{
+				velocity = Vector3.zero;
+			}
 
-		transform.position += velocity * Time.deltaTime;
+			//Also to prevent a flickering effect
+			if(velocity.magnitude > 0)
+			{
+				transform.forward = velocity.normalized;
+			}
+
+			transform.position += velocity * Time.deltaTime;
 
 
-		if(transform.position.magnitude > radius)
-		{
-			direction = (-new Vector3(transform.position.x, 0, transform.position.z)).normalized;
+			if(transform.position.magnitude > radius)
+			{
+				direction = (-new Vector3(transform.position.x, 0, transform.position.z)).normalized;
+			}
 		}
 	}
 
 	void OnTriggerEnter(Collider collidor) {
 
-
+		if(collidor.GetComponent<Lure>())
+		{
+			collidor.GetComponent<Lure>().AttachFish(this);
+		}
 		//Destroy(gameObject);
 	}
 }

@@ -71,8 +71,19 @@ public class Lure : MonoBehaviour {
 		}
 	}
 
+	Fish fishAttached;
+
+	public void AttachFish(Fish fish)
+	{
+		ConfigurableJoint joint = fish.GetComponent<ConfigurableJoint>();
+		joint.connectedBody = this.rigidbody;
+		fish.rigidbody.isKinematic = false;
+
+	}
+
 	void OnTriggerEnter(Collider collidor) {
-		
+
+
 
 	}
 
