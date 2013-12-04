@@ -19,6 +19,10 @@ public class Rod : MonoBehaviour {
 
 	public Lure currentLure;
 
+	public AudioSource reelingSound;
+	public AudioSource castSound;
+	private bool reeling = false;
+
 	public Camera lureCam;
 	public float pullbackRotation = 0f;
 	float currentPull = 0f;
@@ -78,6 +82,20 @@ public class Rod : MonoBehaviour {
 		}
 
 		reelingIn = Input.GetMouseButton(1);
+
+		//Handle playing reeling sound
+		if(reelingIn && currentLure.deployed && !(reelingSound.isPlaying)) {
+			reeling = true;
+		}
+
+		if(reeling) {
+			reelingSound.Play();
+			reeling = false;
+		}
+
+		if(!reelingIn) {
+			reelingSound.Pause();
+		}
 
 		Ray mouseRay = lureCam.ScreenPointToRay(Input.mousePosition);
 
