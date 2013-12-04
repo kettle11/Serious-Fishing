@@ -14,7 +14,7 @@ public class CameraRotate : MonoBehaviour {
 		transform.RotateAround(Vector3.zero,Vector3.up, 4 * Time.deltaTime);
 	
 		if(Input.anyKeyDown) {
-			Application.LoadLevel("RyanGimsonScene");
+			Application.LoadLevel("IanScene");
 		}
 	}
 

@@ -22,7 +22,10 @@ public class TimeKeepTracker : MonoBehaviour {
 			day ++;
 			temp_fishCaught=7;
 			FamilySceneGlobal.fish+=temp_fishCaught;
-			Application.LoadLevel("FamilyScene");
+			if(day>7)
+				Application.LoadLevel("EndSceen");
+			else
+				Application.LoadLevel("FamilyScene");
 		}
 	}
 }

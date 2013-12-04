@@ -20,11 +20,11 @@ public class goFish : MonoBehaviour {
 		{
 			if (x.alive)
 				x.hunger += 1;
-				x.health -= 3 + x.hunger;
+				x.health -= 3;
 			if (x.health <= 0)
 				x.alive = false;
 		}
-		FamilySceneGlobal.fish += 5;
+		Application.LoadLevel("IanScene");
 	}
 	void OnMouseEnter() {
 			gameObject.guiText.color = Color.black;
