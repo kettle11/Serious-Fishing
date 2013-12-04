@@ -127,9 +127,9 @@ public class Lure : MonoBehaviour {
 	{
 		if(fishAttached != null)
 		{
-			fishAttached.rigidbody.isKinematic = true;
 			fishAttached.rigidbody.position = fishAttached.transform.position;
 			fishAttached.rigidbody.velocity = Vector3.zero;
+			fishAttached.rigidbody.isKinematic = true;
 			fishAttached = null;
 		}
 	}
