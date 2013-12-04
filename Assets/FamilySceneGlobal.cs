@@ -63,7 +63,7 @@ public class FamilySceneGlobal : MonoBehaviour {
 		//family.Add(hero);
 		Debug.Log(TimeKeepTracker.day);
 		if(TimeKeepTracker.day==1){ family.Add(wife); family.Add(baby);family.Add(child); family.Add(dog);}
-		ntemp=ttemp;ltemp=FishCollect.getFishCollected();ttemp=ltemp;ltemp-=ntemp;fish=ltemp;
+		fish=FishCollect.getFishCollected();
 	}
 	
 	// Update is called once per frame
