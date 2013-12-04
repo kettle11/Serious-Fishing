@@ -66,10 +66,10 @@ public class Lure : MonoBehaviour {
 		}
 
 		//Cast fish back
-		if(fishOutOfWater && newInWater && newInWater != inWater && fishAttached != null)
+		if(fishOutOfWater && deployed && newInWater && newInWater != inWater && fishAttached != null)
 		{
 			unDeploy();
-			//DetachFish();
+			DetachFish();
 		}
 
 		inWater = newInWater;
