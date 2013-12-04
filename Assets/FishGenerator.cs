@@ -19,10 +19,59 @@ public class FishGenerator : MonoBehaviour {
 	private string topTexName;
 	private string lanternTexName;
 
-	public Fish prefabFish;
+	public Transform prefabFish;
+
+	Mesh defaultMesh;
 
 	// Use this for initialization
 	void Start () {
+		defaultMesh = new Mesh();
+
+		Vector3[] vertices = new Vector3[8];
+		Vector2[] uvs = new Vector2[8];
+		int [] tris = new int[12];
+
+
+		vertices[0] = new Vector3(0, -.5f, -.5f);
+		vertices[1] = new Vector3(0, .5f, -.5f);
+		vertices[2] = new Vector3(0, .5f, .5f);
+		vertices[3] = new Vector3(0, -.5f, .5f);
+
+		vertices[4] = new Vector3(0, -.5f, -.5f);
+		vertices[5] = new Vector3(0, .5f, -.5f);
+		vertices[6] = new Vector3(0, .5f, .5f);
+		vertices[7] = new Vector3(0, -.5f, .5f);
+
+		uvs[0] = new Vector2(0,0);
+		uvs[1] = new Vector2(0,1);
+		uvs[2] = new Vector2(-1,1);
+		uvs[3] = new Vector2(-1,0);
+
+		uvs[4] = new Vector2(0,0);
+		uvs[5] = new Vector2(0,1);
+		uvs[6] = new Vector2(-1,1);
+		uvs[7] = new Vector2(-1,0);
+
+		tris[0] = 0;
+		tris[1] = 1;
+		tris[2] = 2;
+		tris[3] = 0;
+		tris[4] = 2;
+		tris[5] = 3;
+
+		tris[6] = 7;
+		tris[7] = 6;
+		tris[8] = 5;
+		tris[9] = 7;
+		tris[10] = 5;
+		tris[11] = 4;
+
+
+		defaultMesh.vertices = vertices;
+		defaultMesh.uv = uvs;
+		defaultMesh.triangles = tris;
+		defaultMesh.RecalculateNormals();
+
 		GenerateFish();
 		GenerateFish();
 		GenerateFish();
@@ -34,7 +83,10 @@ public class FishGenerator : MonoBehaviour {
 	}
 
 	void GenerateFish() {
-		Fish newFish = (Fish)Instantiate(prefabFish);
+		Transform newFish = (Transform)Instantiate(prefabFish, Vector3.zero, Quaternion.identity);
+		MeshFilter meshF = newFish.GetComponent<MeshFilter>();
+		meshF.mesh = defaultMesh;
+
 		CreateRenderer(newFish.GetComponent<MeshRenderer>());
 	}
 
@@ -75,14 +127,14 @@ public class FishGenerator : MonoBehaviour {
 			materialsArray = new Material[6];
 
 			for(int i = 0; i < 6; i++) {
-				materialsArray[i] = new Material(renderer.material);
+				materialsArray[i] = new Material(fishRenderer.material);
 			}
 		}
 		else {
 			materialsArray = new Material[5];
 			
 			for(int i = 0; i < 5; i++) {
-				materialsArray[i] = new Material(renderer.material);
+				materialsArray[i] = new Material(fishRenderer.material);
 			}
 
 		}
