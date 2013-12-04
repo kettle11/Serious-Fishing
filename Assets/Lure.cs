@@ -27,7 +27,7 @@ public class Lure : MonoBehaviour {
 
 	public void unDeploy()
 	{
-		deployed = true;
+		deployed = false;
 		joint.xMotion = ConfigurableJointMotion.Limited;
 		joint.yMotion = ConfigurableJointMotion.Limited;
 		joint.zMotion = ConfigurableJointMotion.Limited;
@@ -87,6 +87,7 @@ public class Lure : MonoBehaviour {
 		//joint.connectedBody = this.rigidbody;
 
 		fish.rigidbody.isKinematic = true;
+		fishAttached = fish;
 
 	}
 

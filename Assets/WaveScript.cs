@@ -23,9 +23,6 @@ public class WaveScript : MonoBehaviour {
 		{
 			for(int i = 0; i < (width - 1); i++)
 			{
-				print(i < width - 1);
-				print(i);
-				print(width);
 				tris.Add(j * width + i);
 				tris.Add((j + 1) * width + i);
 				tris.Add(j * width + (i + 1));
