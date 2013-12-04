@@ -96,6 +96,7 @@ public class FishGenerator : MonoBehaviour {
 
 	void GenerateFish(Vector3 position, int size) {
 		Transform newFish = (Transform)Instantiate(prefabFish, position, Quaternion.AngleAxis(Random.value * Mathf.PI * 2f, Vector3.up));
+	
 		if(size == 0)
 		{
 			newFish.transform.localScale = smallFish;
@@ -108,6 +109,8 @@ public class FishGenerator : MonoBehaviour {
 		{
 			newFish.transform.localScale = largeFish;
 		}
+
+		((Fish)(newFish.GetComponent("Fish"))).size = size;
 
 		MeshFilter meshF = newFish.GetComponent<MeshFilter>();
 		meshF.mesh = defaultMesh;

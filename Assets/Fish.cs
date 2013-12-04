@@ -30,6 +30,8 @@ public class Fish : MonoBehaviour {
 	public int outOfWaterLayer = 3021;
 	public int inWaterLayer = 3019;
 
+	public int size = 1;
+
 	// Update is called once per frame
 	//Much of this logic is assuming the boat position never moves!
 	void Update () {
