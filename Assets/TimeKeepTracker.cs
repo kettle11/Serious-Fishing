@@ -3,8 +3,8 @@ using System.Collections;
 
 public class TimeKeepTracker : MonoBehaviour {
 
-	int temp_fishCaught=0;
-	public static int day = 1;
+	int temp_fishCaught=FishCollect.getFishCollected();
+	public static int day = 0;
 
 	static float ltime = 0;
 	// Use this for initialization
@@ -20,8 +20,8 @@ public class TimeKeepTracker : MonoBehaviour {
 		if(ltime>360){
 			ltime=0;
 			day ++;
-			temp_fishCaught=7;
-			FamilySceneGlobal.fish+=temp_fishCaught;
+
+			//FamilySceneGlobal.set_fish(temp_fishCaught);
 			if(day>7)
 				Application.LoadLevel("EndSceen");
 			else
