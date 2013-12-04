@@ -4,6 +4,7 @@ using System.Collections;
 public class FishCollect : MonoBehaviour {
 
 	private static int fishCollected;
+	public GameObject dog;
 
 	public static void collectFish(int change)
 	{
@@ -17,7 +18,11 @@ public class FishCollect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
+		if(!FamilySceneGlobal.dog.alive)
+		{
+			Destroy(dog);
+		}
 	}
 
 	void OnGUI() {
