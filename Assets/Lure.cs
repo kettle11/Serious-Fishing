@@ -6,6 +6,9 @@ public class Lure : MonoBehaviour {
 	ConfigurableJoint joint;
 	
 	public AudioSource splashSound;
+	public AudioSource barkSound;
+
+	public Collider dogCollider;
 
 	// Use this for initialization
 	void Start () {
@@ -146,5 +149,14 @@ public class Lure : MonoBehaviour {
 
 
 	}
-	
+
+	void OnCollisionEnter(Collision collision) {
+
+	}
+
+	public void BroughtOutOfWater() {
+		if (fishAttached != null) {
+			barkSound.Play();
+		}
+	}
 }
